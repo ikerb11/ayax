@@ -47,9 +47,7 @@ function getProfesores(){
       while (select.firstChild) {
         select.removeChild(select.firstChild);
       }
-      for(var i=0; i<table.rows.length;i++){
-        table.deleteRow(0);
-      }
+      table.innerHTML= " ";
       var opt = document.createElement('option');
       opt.innerHTML = "--selecionar";
       select.appendChild(opt);
