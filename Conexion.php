@@ -5,54 +5,8 @@
  * @since 03/19/2023
  * @version 1.0.0
  */
-class Departamento {
-    //Atributos
-    /**
-     * @var Codigo departamento Char(3) "001" 
-     */
-    private $codigo;
-    /**
-     * @var Nombre departamento VarChar(20) "10101010101010101010"
-     */
-    private $nombre;
 
-    //Metodos
-    public function __construct($codigo, $nombre)
-    {
-        $this->codigo= $codigo;
-        $this->nombre= $nombre;
-    }
-    public function getCodigo(){
-        return $this->codigo;
-    }
-}
-/**
- * Class Profesor
- * @author Iker berna
- * @since 10/19/2023
- * @version 1.0.0
- */
-class Profesor {
-    //Atributos
-    /**
-     * @var Dni profesor Char(10) "65004204V" 
-     */
-    private $dni;
-    /**
-     * @var Nombre profesor VarChar(18) "101010101010101010"
-     */
-    private $nombre;
 
-    //Metodos
-    public function __construct($dni, $nombre)
-    {
-        $this->dni= $dni;
-        $this->nombre= $nombre;
-    }
-    public function getDni(){
-        return $this->dni;
-    }
-}
 
 /**
  * Class Conexion

@@ -42,17 +42,26 @@ function getProfesores(){
     .catch((error) => console.error("Error:", error))
     .then(function(response){
       var select = document.getElementById("profesores");
+      var table = document.getElementById("tabla");
       var p = document.getElementById("msg");
       while (select.firstChild) {
         select.removeChild(select.firstChild);
+      }
+      for(var i=0; i<table.rows.length;i++){
+        table.deleteRow(0);
       }
       var opt = document.createElement('option');
       opt.innerHTML = "--selecionar";
       select.appendChild(opt);
       for(var i = 0; i<response.data.length; i++){
+        var row = table.insertRow(0);
+        var cel1= row.insertCell(0);
+        var cel2= row.insertCell(1);
         var opt = document.createElement('option');
         opt.value= response.data[i].DNI;
+        cel1.innerHTML= response.data[i].DNI
         opt.innerHTML = response.data[i].NOMBRE +" "+ response.data[i].APELLIDO_1;
+        cel2.innerHTML= response.data[i].NOMBRE +" "+ response.data[i].APELLIDO_1
         select.appendChild(opt);
       }
     });
