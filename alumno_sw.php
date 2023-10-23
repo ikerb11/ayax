@@ -4,7 +4,6 @@ header('Content-Type: application/json; charset=utf-8');
 $name = !empty($_POST["action"])? $_POST["action"] : null;
 $action= $data['action'];
 $departameno_id=isset($data["departamento_id"])? $data["departamento_id"]:null;
-require_once("Conexion.php");
 require_once("Departamento.php");
 require_once("Profesor.php");
 
@@ -13,7 +12,6 @@ $msg =  "Listado de departamentos";
 $success = true;
 $data = array();
 
-
 try{
     if($action == "departamentos"){
         $data = Departamento::getAllDepartamentos();
@@ -21,8 +19,6 @@ try{
         $data= Profesor::getProfesoresDepartamento($departameno_id);
     }
 
-
-    
 }catch(Exception $exception){
     $msg=$exception->getMessage();
 }
