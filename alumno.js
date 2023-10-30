@@ -1,4 +1,4 @@
-
+var max;
 //Carga
 function getDepartamentos(){
   var url = "alumno_sw.php";
@@ -73,7 +73,9 @@ function getProfesores(){
           table.deleteRow(0)
           continue;
         }
+       
       }
+      max= Math.ceil(response.data.length/5)-1;
     });
 
 }
@@ -82,26 +84,8 @@ function getProfesores(){
     var url = "alumno_sw.php";
     var select= document.getElementById("departamentos");
     var data = { action:"profesores", departamento_id:select.value };
-    
-    fetch(url, {
-      method: "POST", // or 'PUT'
-      body: JSON.stringify(data), // data can be `string` or {object}!
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .catch((error) => console.error("Error:", error))
-      .then(function(response){
-        var pagina= document.getElementById("pagina");
-        var numero=0;
-        if(response.data.length!=0){
-          numero = Math.ceil(response.data.length/5)-1 ;
-        }
-        pagina.value = numero;
-        getProfesores();
-      });
-
+    pagina.value = max;
+    getProfesores();
   }
   function minimo(){
     var pagina= document.getElementById("pagina");
@@ -122,12 +106,16 @@ function menos(){
 }
 function mas(){
   var pagina= document.getElementById("pagina");
-  if(pagina.value!=null){
+  if(pagina.value!=null && pagina.value>=0){
     var numero = parseInt(pagina.value)+1;
   }else{
-    var numero=1;
+    var numero=0;
   }
-  pagina.value = numero;
+  if(numero>max){
+    pagina.value=max;
+  }else{
+    pagina.value = numero;
+  }
   getProfesores();
 
 }
