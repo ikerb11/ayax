@@ -25,6 +25,7 @@ function getDepartamentos(){
         opt.innerHTML = response.data[i].NOMBRE;
         select.appendChild(opt);
       }
+      getProfesores();
     });
 }
 

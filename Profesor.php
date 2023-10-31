@@ -36,7 +36,10 @@ class Profesor {
     }
     public static function getProfesoresDepartamento($departamento_id){
         require_once("Conexion.php");
-        $sql = "select * from profesor where id_departamento=:departamento_id";
+        $sql = "select * from profesor where true";
+        if ($departamento_id!="--selecionar"){
+            $sql .= " and id_departamento=:departamento_id";
+        }
         $arrValues[":departamento_id"]= $departamento_id;
         $conexion = Conexion::getInstance();
         $return= $conexion->fetch($sql,$arrValues);
