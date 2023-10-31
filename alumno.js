@@ -82,9 +82,6 @@ function getProfesores(){
 }
 
   function maximo(){
-    var url = "alumno_sw.php";
-    var select= document.getElementById("departamentos");
-    var data = { action:"profesores", departamento_id:select.value };
     pagina.value = max;
     getProfesores();
   }
@@ -119,4 +116,15 @@ function mas(){
   }
   getProfesores();
 
+}
+function cambiarPagina(){
+  var pagina= document.getElementById("pagina");
+  var numero =pagina.value;
+  if (numero<0){
+    numero=0;
+  }else if(numero>max){
+    numero=max
+  }
+  pagina.value = numero;
+  getProfesores();
 }
