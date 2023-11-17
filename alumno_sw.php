@@ -16,7 +16,7 @@ try{
     if($action == "departamentos"){
         $data = Departamento::getAllDepartamentos();
     } else{
-        $data= Profesor::getProfesoresDepartamento($departameno_id);
+        $data= Profesor::getAllProfesores();
     }
 
 }catch(Exception $exception){

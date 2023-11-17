@@ -1,4 +1,5 @@
 <?php
+require_once("Conexion.php");
 /**
  * Class Profesor
  * @author Iker berna
@@ -26,8 +27,7 @@ class Profesor {
         return $this->dni;
     }
     public static function getAllProfesores(){
-        require_once("Conexion.php");
-        $sql = "select * from profesores";
+        $sql = "select * from profesor";
         $arrValues=[];
         $conexion = Conexion::getInstance();
         $return= $conexion->fetch($sql,$arrValues);
@@ -35,7 +35,7 @@ class Profesor {
 
     }
     public static function getProfesoresDepartamento($departamento_id){
-        require_once("Conexion.php");
+        
         $sql = "select * from profesor where id_departamento=:departamento_id";
         $arrValues[":departamento_id"]= $departamento_id;
         $conexion = Conexion::getInstance();

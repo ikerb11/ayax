@@ -26,12 +26,13 @@ function getDepartamentos(){
         select.appendChild(opt);
       }
     });
+    getProfesores()
 }
 
 function getProfesores(){
   var url = "alumno_sw.php";
-  var select= document.getElementById("departamentos");
-  var data = { action:"profesores", departamento_id:select.value };
+
+  var data = { action:"profesores",};
   
   fetch(url, {
     method: "POST", // or 'PUT'
@@ -44,16 +45,13 @@ function getProfesores(){
     .catch((error) => console.error("Error:", error))
     .then(function(response){
       //Recoje los elementos que se van a modificar
-      var select = document.getElementById("profesores");
       var table = document.getElementById("tabla");
       var opt = document.createElement('option');
       //Borra el contenido anterior preparando para el nuevo
-      while (select.firstChild) {
-        select.removeChild(select.firstChild);
-      }
+
       table.innerHTML= " ";
       opt.innerHTML = "--selecionar";
-      select.appendChild(opt);
+      
       //Crea etiquetas para mostrar los profesores
       for(var i = document.getElementById("pagina").value*5; i<(document.getElementById("pagina").value*5)+5; i++){ 
         try{
@@ -67,7 +65,7 @@ function getProfesores(){
         cel1.innerHTML= response.data[i].DNI;
         opt.innerHTML = response.data[i].NOMBRE +" "+ response.data[i].APELLIDO_1;
         cel2.innerHTML= response.data[i].NOMBRE +" "+ response.data[i].APELLIDO_1;
-        select.appendChild(opt);
+        
 
         }catch(error ){
           table.deleteRow(0)
