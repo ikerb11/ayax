@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario</title>
+    <script type="text/javascript" src="alumno.js"></script>
+</head>
+<body>
+
+    <h1>Formulario de Datos</h1>
+    
+    <form id="form" onsubmit="enviarFormulario(event)">
+        <!-- DNI -->
+        <label for="dni">DNI:</label>
+        <input type="text" id="dni" name="dni" maxlength="10" required>
+    
+        <!-- Apellido 1 -->
+        <label for="apellido1">Apellido 1:</label>
+        <input type="text" id="apellido1" name="apellido1" maxlength="18">
+    
+        <!-- Apellido 2 -->
+        <label for="apellido2">Apellido 2:</label>
+        <input type="text" id="apellido2" name="apellido2" maxlength="18">
+    
+        <!-- Nombre -->
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" maxlength="18">
+    
+        <!-- Dirección -->
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" name="direccion" maxlength="30">
+    
+        <!-- Localidad -->
+        <label for="localidad">Localidad:</label>
+        <input type="text" id="localidad" name="localidad" maxlength="19">
+    
+        <!-- Provincia -->
+        <label for="provincia">Provincia:</label>
+        <input type="text" id="provincia" name="provincia" maxlength="19">
+    
+        <!-- Fecha de Ingreso -->
+        <label for="fechaIngreso">Fecha de Ingreso:</label>
+        <input type="date" id="fechaIngreso" name="fechaIngreso">
+    
+        <!-- ID Categoría -->
+        <label for="idCategoria">ID Categoría:</label>
+        <input type="text" id="idCategoria" name="idCategoria" maxlength="1">
+    
+        <!-- ID Departamento -->
+        <label for="idDepartamento">ID Departamento:</label>
+        <input type="text" id="idDepartamento" name="idDepartamento" maxlength="3">
+    
+        <!-- Botón de Enviar -->
+        <input type="submit" value="Enviar" onclick="insertar()">
+    </form>
+    
+    </body>
+</html>

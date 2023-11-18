@@ -141,3 +141,12 @@ function eliminar($DNI){
     
 
 }
+function insertar(){
+  var formulario=Array.from(document.getElementById("form").elements);
+  for (var i = 0; i < formulario.length; i++) {
+      formulario[i]= formulario[i].value;
+
+
+  }
+  console.log(formulario);
+}
