@@ -59,12 +59,15 @@ function getProfesores(){
         var row = table.insertRow(0);
         var cel1= row.insertCell(0);
         var cel2= row.insertCell(1);
+        var cel3= row.insertCell(2);
         var opt = document.createElement('option');
         //Añado un valor/HTML a las etiquetas
+
         opt.value= response.data[i].DNI;
         cel1.innerHTML= response.data[i].DNI;
         opt.innerHTML = response.data[i].NOMBRE +" "+ response.data[i].APELLIDO_1;
         cel2.innerHTML= response.data[i].NOMBRE +" "+ response.data[i].APELLIDO_1;
+        cel3.innerHTML= '<input type="button" value="eliminar" onclick="eliminar('+response.data[i].DNI+')">'
         
 
         }catch(error ){
@@ -81,7 +84,7 @@ function getProfesores(){
   function maximo(){
     var url = "alumno_sw.php";
     var select= document.getElementById("departamentos");
-    var data = { action:"profesores", departamento_id:select.value };
+    var data = { action:"profesores" };
     pagina.value = max;
     getProfesores();
   }
@@ -115,5 +118,24 @@ function mas(){
     pagina.value = numero;
   }
   getProfesores();
+
+}
+function eliminar($DNI){
+  var url = "alumno_sw.php";
+  var data = { action:"eliminar", dni:$DNI };
+  
+  fetch(url, {
+    method: "POST", // or 'PUT'
+    body: JSON.stringify(data), // data can be `string` or {object}!
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .catch((error) => console.error("Error:", error))
+    .then(function(response){
+      
+    });
+    getProfesores
 
 }

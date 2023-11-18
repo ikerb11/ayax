@@ -31,6 +31,7 @@ class Profesor {
         $arrValues=[];
         $conexion = Conexion::getInstance();
         $return= $conexion->fetch($sql,$arrValues);
+        
         return $return;
 
     }
@@ -41,6 +42,24 @@ class Profesor {
         $conexion = Conexion::getInstance();
         $return= $conexion->fetch($sql,$arrValues);
         return $return;
+
+    }
+    public static function deleteProfesores($dni){
+        try{
+
+        
+        $sql = "delete from profesor where dni=:dni";
+        $arrValues[":dni"]= $dni;
+        $conexion = Conexion::getInstance();
+
+        // Asignar valores a los parámetros y ejecutar la consulta
+    
+        // Obtener los resultados
+        $return = $conexion->fetch($sql,$arrValues);
+        return $return;
+        }catch(Exception $e){
+            throw $e;
+        }
 
     }
 }

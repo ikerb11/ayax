@@ -4,6 +4,7 @@ header('Content-Type: application/json; charset=utf-8');
 $name = !empty($_POST["action"])? $_POST["action"] : null;
 $action= $data['action'];
 $departameno_id=isset($data["departamento_id"])? $data["departamento_id"]:null;
+$dni = isset($data["dni"])? $data["dni"]:null;
 require_once("Departamento.php");
 require_once("Profesor.php");
 
@@ -15,7 +16,10 @@ $data = array();
 try{
     if($action == "departamentos"){
         $data = Departamento::getAllDepartamentos();
-    } else{
+    }elseif($action == "eliminar"){
+        $data = Profesor::deleteProfesores($dni);
+    }
+     else{
         $data= Profesor::getAllProfesores();
     }
 

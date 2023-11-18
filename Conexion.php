@@ -46,8 +46,8 @@ class Conexion{
         $stmt->execute($arrValues);
     
         return $stmt-> fetchAll(PDO::FETCH_ASSOC);
-    }catch(Exception $exception){
-        $msg=$exception->getMessage();
+    }catch(PDOException  $exception){
+        throw $exception;
     }
  }
 }
