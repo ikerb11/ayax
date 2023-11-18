@@ -134,8 +134,10 @@ function eliminar($DNI){
     .then((res) => res.json())
     .catch((error) => console.error("Error:", error))
     .then(function(response){
-      
+      var error=document.getElementById("error")
+      error.textContent= response.msg;
     });
-    getProfesores
+    getProfesores();
+    
 
 }
