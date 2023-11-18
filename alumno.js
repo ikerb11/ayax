@@ -135,18 +135,39 @@ function eliminar($DNI){
     .catch((error) => console.error("Error:", error))
     .then(function(response){
       var error=document.getElementById("error")
-      error.textContent= response.msg;
+      if(response.msg!=null){
+        error.textContent= response.msg;
+      }
     });
     getProfesores();
     
 
 }
 function insertar(){
-  var formulario=Array.from(document.getElementById("form").elements);
-  for (var i = 0; i < formulario.length; i++) {
-      formulario[i]= formulario[i].value;
+  var url = "alumno_sw.php";
 
-
+  $formulario=Array.from(document.getElementById("form").elements);
+  for (var i = 0; i < $formulario.length; i++) {
+      $formulario[i]= $formulario[i].value;
   }
-  console.log(formulario);
+  console.log($formulario);
+  var data = { action:"insertar", datos:$formulario };
+  fetch(url, {
+    method: "POST", // or 'PUT'
+    body: JSON.stringify(data), // data can be `string` or {object}!
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .catch((error) => console.error("Error:", error))
+    .then(function(response){
+      var error=document.getElementById("error")
+      if(response.msg!=null){
+          error.textContent= response.msg;     
+      }
+      if(response.succes){
+        window.location.href("alumno.html");
+    }
+    });
 }

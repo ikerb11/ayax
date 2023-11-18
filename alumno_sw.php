@@ -9,15 +9,22 @@ require_once("Departamento.php");
 require_once("Profesor.php");
 
 $arrValues=[];
-$msg =  "Listado de departamentos";
+$msg =  "";
 $success = true;
-$data = array();
 
 try{
     if($action == "departamentos"){
         $data = Departamento::getAllDepartamentos();
     }elseif($action == "eliminar"){
-        $data = Profesor::deleteProfesores($dni);
+        $data = Profesor::deleteProfesores($insertar);
+    }elseif($action == "insertar"){
+        $insertar = isset($data["datos"])? $data["datos"]:null;
+        if( $insertar!=NULL){
+            $data = Profesor::insertarProfesores($insertar);
+        }else{
+            $data = array();
+        }
+        
     }
      else{
         $data= Profesor::getAllProfesores();
@@ -25,6 +32,7 @@ try{
 
 }catch(Exception $exception){
     $msg=$exception->getMessage();
+    $success=false;
 }
 $json= array();
 $json["msg"] = $msg;

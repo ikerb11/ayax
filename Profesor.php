@@ -46,8 +46,6 @@ class Profesor {
     }
     public static function deleteProfesores($dni){
         try{
-
-        
         $sql = "delete from profesor where dni=:dni";
         $arrValues[":dni"]= $dni;
         $conexion = Conexion::getInstance();
@@ -58,6 +56,35 @@ class Profesor {
         $return = $conexion->fetch($sql,$arrValues);
         return $return;
         }catch(Exception $e){
+            throw $e;
+        }
+
+    }
+    public static function insertarProfesores($datos){
+        try{
+            $sql="
+            INSERT INTO profesor
+            VALUES (:dni, :apellido1, :apellido2, :nombre, :direccion, :localidad, :provincia, :fecha_ingreso, :id_categoria, :id_departamento)
+            ";
+            $arrValues[':dni']=  $datos[0];
+            $arrValues[':apellido1']=$datos[1];
+            $arrValues[':apellido2']=$datos[2];
+            $arrValues[':nombre']= $datos[3];
+            $arrValues[':direccion']= $datos[4];
+            $arrValues[':localidad']= $datos[5];
+            $arrValues[':provincia']= $datos[6];
+            $arrValues[':fecha_ingreso']= $datos[7];
+            $arrValues[':id_categoria']= $datos[8];
+            $arrValues[':id_departamento']= $datos[9];
+            $conexion = Conexion::getInstance();
+
+            // Asignar valores a los parámetros y ejecutar la consulta
+        
+            // Obtener los resultados
+            $return = $conexion->fetch($sql,$arrValues);
+        return $return;
+        }catch(Exception $e){
+            
             throw $e;
         }
 
