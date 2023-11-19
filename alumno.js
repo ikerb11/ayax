@@ -67,7 +67,7 @@ function getProfesores(){
         cel1.innerHTML= response.data[i].DNI;
         opt.innerHTML = response.data[i].NOMBRE +" "+ response.data[i].APELLIDO_1;
         cel2.innerHTML= response.data[i].NOMBRE +" "+ response.data[i].APELLIDO_1;
-        cel3.innerHTML= '<input type="button" value="eliminar" onclick="eliminar('+response.data[i].DNI+')">'
+        cel3.innerHTML= '<input type="button" value="eliminar" onclick="eliminar(\''+response.data[i].DNI.toString()+'\')">'
         
 
         }catch(error ){
@@ -166,8 +166,8 @@ function insertar(){
       if(response.msg!=null){
           error.textContent= response.msg;     
       }
-      if(response.succes){
-        window.location.href("alumno.html");
+      if(response.succes== true){
+        window.location.href="alumno.html";
     }
     });
 }
