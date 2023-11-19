@@ -5,14 +5,14 @@
     <title>Formulario</title>
     <script type="text/javascript" src="alumno.js"></script>
 </head>
-<body>
+<body onload="cargarUpdate()" >
 
     <h1>Formulario de Datos</h1>
     
-    <form id="form" onsubmit=>
+    <form id="form" >
         <!-- DNI -->
         <label for="dni">DNI:</label>
-        <input type="number" id="dni" name="dni" maxlength="10" required>
+        <input type="number" id="dni" name="dni" maxlength="10" >
     
         <!-- Apellido 1 -->
         <label for="apellido1">Apellido 1:</label>
@@ -51,7 +51,7 @@
         <input type="text" id="idDepartamento" name="idDepartamento" maxlength="3" required>
     
         <!-- Botón de Enviar -->
-        <input type="button" value="Enviar" onclick="insertar()">
+        <input type="button" id="boton" value="Enviar">
     </form>
     <h2 id="error"></h2>
 

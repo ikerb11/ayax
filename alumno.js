@@ -60,6 +60,7 @@ function getProfesores(){
         var cel1= row.insertCell(0);
         var cel2= row.insertCell(1);
         var cel3= row.insertCell(2);
+        var cel4= row.insertCell(3);
         var opt = document.createElement('option');
         //Añado un valor/HTML a las etiquetas
 
@@ -67,7 +68,8 @@ function getProfesores(){
         cel1.innerHTML= response.data[i].DNI;
         opt.innerHTML = response.data[i].NOMBRE +" "+ response.data[i].APELLIDO_1;
         cel2.innerHTML= response.data[i].NOMBRE +" "+ response.data[i].APELLIDO_1;
-        cel3.innerHTML= '<input type="button" value="eliminar" onclick="eliminar(\''+response.data[i].DNI.toString()+'\')">'
+        cel3.innerHTML= '<input type="button" value="eliminar" onclick="eliminar(\''+response.data[i].DNI.toString()+'\')">';
+        cel4.innerHTML= '<input type="button" value="editar" onclick="irFormularioEditar(\''+response.data[i].DNI.toString()+'\')">';
         
 
         }catch(error ){
@@ -170,4 +172,80 @@ function insertar(){
         window.location.href="alumno.html";
     }
     });
+}
+function actualizar(){
+  var url = "alumno_sw.php";
+
+  $formulario=Array.from(document.getElementById("form").elements);
+  for (var i = 0; i < $formulario.length; i++) {
+      $formulario[i]= $formulario[i].value;
+  }
+  console.log($formulario);
+  var data = { action:"actualizar", datos:$formulario };
+  fetch(url, {
+    method: "POST", // or 'PUT'
+    body: JSON.stringify(data), // data can be `string` or {object}!
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .catch((error) => console.error("Error:", error))
+    .then(function(response){
+      var error=document.getElementById("error")
+      if(response.msg!=null){
+          error.textContent= response.msg;     
+      }
+      if(response.succes== true){
+        window.location.href="alumno.html";
+    }
+    });
+}
+function cargarUpdate(){
+  var parametros = new URLSearchParams(window.location.search);
+  var boton = document.getElementById("boton");
+  if(parametros.get('dni')!=null){
+    var elemento = document.getElementById("dni");
+    $DNI=parametros.get('dni');
+    elemento.value= $DNI;
+    elemento.readOnly = "true";
+    var url = "alumno_sw.php";
+    var data = { action:"profesor", dni:$DNI };
+    
+    fetch(url, {
+      method: "POST", // or 'PUT'
+      body: JSON.stringify(data), // data can be `string` or {object}!
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .catch((error) => console.error("Error:", error))
+      .then(function(response){
+        var nombre=document.getElementById("nombre")
+        var apellido1=document.getElementById("apellido1")
+        var apellido2=document.getElementById("apellido2")
+        var direccion=document.getElementById("direccion")
+        var localidad=document.getElementById("localidad")
+        var provincia=document.getElementById("provincia")
+        var fechaIngreso=document.getElementById("fechaIngreso")
+        var idCategoria=document.getElementById("idCategoria")
+        var idDepartamento=document.getElementById("idDepartamento")
+        nombre.value= response.data[0].NOMBRE;
+        apellido1.value= response.data[0].APELLIDO_1;
+        apellido2.value= response.data[0].APELLIDO_2;
+        direccion.value= response.data[0].DIRECCION;
+        localidad.value= response.data[0].LOCALIDAD;
+        provincia.value= response.data[0].PROVINCIA;
+        fechaIngreso.value= response.data[0].FECHA_INGRESO;
+        idCategoria.value= response.data[0].ID_CATEGORIA;
+        idDepartamento.value= response.data[0].ID_DEPARTAMENTO;
+        boton.onclick = actualizar;
+      });
+  }else{
+    boton.onclick = insertar;
+  }
+}
+function irFormularioEditar($valor){
+  window.location.href = 'formulario.html?dni=' + encodeURIComponent($valor);
 }

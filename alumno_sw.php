@@ -17,6 +17,9 @@ try{
     }elseif($action == "eliminar"){
         $dni = isset($data["dni"])? $data["dni"]:null;
         $data = Profesor::deleteProfesores($dni);
+    }elseif($action == "profesor"){
+        $dni = isset($data["dni"])? $data["dni"]:null;
+        $data = Profesor::getProfesoresDNI($dni);
     }elseif($action == "insertar"){
         $insertar = isset($data["datos"])? $data["datos"]:null;
         if( $insertar!=NULL){
@@ -24,9 +27,14 @@ try{
         }else{
             $data = array();
         }
-        
-    }
-     else{
+    }elseif($action == "actualizar"){
+        $editar = isset($data["datos"])? $data["datos"]:null;
+        if( $editar!=NULL){
+            $data = Profesor::editarProfesores($editar);
+        }else{
+            $data = array();
+        }
+    }else{
         $data= Profesor::getAllProfesores();
     }
 
