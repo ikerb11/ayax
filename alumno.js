@@ -253,7 +253,7 @@ function irFormularioEditar($valor){
   const token = urlParams.get('token');
   if($valor!= null){
 
-    window.location.href = 'formulario.html?dni=' + encodeURIComponent($valor) + '?token=' + token;
+    window.location.href = 'formulario.html?dni=' + encodeURIComponent($valor) + '&token=' + encodeURIComponent(token);
   }else{
     window.location.href = 'formulario.html?token=' + token;
   }
@@ -267,7 +267,7 @@ function login(){
   if (username === 'iker' && password === '1234') {
       // Autenticación exitosa, redirigir a otra página
       const token = true;  // Puedes generar un token más seguro en un entorno real
-      window.location.href = 'alumno.html?token=' + token;
+      window.location.href = 'alumno.html?token=' + encodeURIComponent(token);
   } else {
       alert('Error de autenticación. Por favor, verifica tus credenciales.');
   }
