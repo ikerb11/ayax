@@ -247,5 +247,10 @@ function cargarUpdate(){
   }
 }
 function irFormularioEditar($valor){
-  window.location.href = 'formulario.html?dni=' + encodeURIComponent($valor);
+  if($valor!= null){
+    window.location.href = 'formulario.html?dni=' + encodeURIComponent($valor);
+  }else{
+    window.location.href = 'formulario.html';
+  }
+  
 }

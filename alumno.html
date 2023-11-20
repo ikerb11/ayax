@@ -7,7 +7,7 @@
 </head>
 <body onload="getProfesores()">
     <h1>Listado Departamentos - Profesores</h1>
-    <p id="msg"></p>
+    <button value="insertar" onclick="irFormularioEditar()">insertar</button> 
     <table id="tabla" border="1">
     </table>
     <nav id="Paginador">
@@ -15,6 +15,7 @@
         <input type="number" id="pagina" name=pagina value="0">
         <input type="submit" id="+" value="<<" onclick="minimo()">
         <input type="submit" id="+" value="<" onclick="menos()">
+        <input type="submit" id="+" value="buscar" onclick="getProfesores()">
         <input type="submit" id="+" value=">" onclick="mas()">
         <input type="submit" id="+" value=">>" onclick="maximo()">
     </nav>
