@@ -203,6 +203,7 @@ function actualizar(){
     });
 }
 function cargarUpdate(){
+  confirmarToken();
   var parametros = new URLSearchParams(window.location.search);
   var boton = document.getElementById("boton");
   if(parametros.get('dni')!=null){
@@ -248,10 +249,44 @@ function cargarUpdate(){
   }
 }
 function irFormularioEditar($valor){
+  const urlParams = new URLSearchParams(window.location.search);
+  const token = urlParams.get('token');
   if($valor!= null){
-    window.location.href = 'formulario.html?dni=' + encodeURIComponent($valor);
+
+    window.location.href = 'formulario.html?dni=' + encodeURIComponent($valor) + '?token=' + token;
   }else{
-    window.location.href = 'formulario.html';
+    window.location.href = 'formulario.html?token=' + token;
   }
   
+}
+function login(){
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+
+  // Verificación simple
+  if (username === 'iker' && password === '1234') {
+      // Autenticación exitosa, redirigir a otra página
+      const token = true;  // Puedes generar un token más seguro en un entorno real
+      window.location.href = 'alumno.html?token=' + token;
+  } else {
+      alert('Error de autenticación. Por favor, verifica tus credenciales.');
+  }
+}
+function confirmarToken(){
+  const urlParams = new URLSearchParams(window.location.search);
+  const token = urlParams.get('token');
+
+  // Verificar la presencia del token
+  if (token) {
+      // Token válido, puedes realizar acciones adicionales aquí
+      console.log('Token válido:', token);
+  } else {
+      // Token no presente, redirigir a la página de inicio de sesión
+      alert('Acceso no autorizado. Debes iniciar sesión.');
+      window.location.href = 'index.html';
+  }
+}
+function cargarTabla(){
+  confirmarToken();
+  getProfesores();
 }
