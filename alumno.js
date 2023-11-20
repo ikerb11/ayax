@@ -170,7 +170,9 @@ function insertar(){
           error.textContent= response.msg;     
       }
       if(response.succes== true){
-        window.location.href="alumno.html";
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+        window.location.href="alumno.html?token=" + encodeURIComponent(token);
     }
     });
 }
@@ -198,7 +200,9 @@ function actualizar(){
           error.textContent= response.msg;     
       }
       if(response.succes== true){
-        window.location.href="alumno.html";
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+        window.location.href="alumno.html?token=" + encodeURIComponent(token);
     }
     });
 }
