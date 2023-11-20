@@ -26,9 +26,14 @@ class Profesor {
     public function getDni(){
         return $this->dni;
     }
-    public static function getAllProfesores(){
+    public static function getAllProfesores($nombre){
         $sql = "select * from profesor";
         $arrValues=[];
+        if (isset($nombre) && $nombre!=""){
+            $arrValues[":nombre"]=$nombre;
+            $sql.=' where nombre like concat("%",:nombre,"%")';
+        }
+        
         $conexion = Conexion::getInstance();
         $return= $conexion->fetch($sql,$arrValues);
         

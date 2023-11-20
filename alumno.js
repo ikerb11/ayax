@@ -31,8 +31,9 @@ function getDepartamentos(){
 
 function getProfesores(){
   var url = "alumno_sw.php";
+  var buscador = document.getElementById("nombre");
 
-  var data = { action:"profesores",};
+  var data = { action:"profesores", nombre:buscador.value};
   
   fetch(url, {
     method: "POST", // or 'PUT'

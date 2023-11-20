@@ -35,7 +35,7 @@ try{
             $data = array();
         }
     }else{
-        $data= Profesor::getAllProfesores();
+        $data= Profesor::getAllProfesores($data["nombre"]);
     }
 
 }catch(Exception $exception){
