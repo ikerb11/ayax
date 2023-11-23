@@ -1,4 +1,5 @@
 var max;
+
 //Carga
 function getDepartamentos(){
   var url = "alumno_sw.php";
@@ -270,11 +271,27 @@ function login(){
   // Verificación simple
   if (username === 'iker' && password === '1234') {
       // Autenticación exitosa, redirigir a otra página
-      const token = true;  // Puedes generar un token más seguro en un entorno real
-      window.location.href = 'alumno.html?token=' + encodeURIComponent(token);
+      var url = "alumno_sw.php";
+      var data = { action:"login"};
+      
+      fetch(url, {
+        method: "POST", // or 'PUT'
+        body: JSON.stringify(data), // data can be `string` or {object}!
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .catch((error) => console.error("Error:", error))
+        .then(function(response){
+          const token = true;  // Puedes generar un token más seguro en un entorno real
+          window.location.href = 'alumno.html?token=' + response.data;
+        });
+
   } else {
       alert('Error de autenticación. Por favor, verifica tus credenciales.');
   }
+  
 }
 function confirmarToken(){
   const urlParams = new URLSearchParams(window.location.search);
@@ -290,7 +307,17 @@ function confirmarToken(){
       window.location.href = 'index.html';
   }
 }
+
 function cargarTabla(){
   confirmarToken();
   getProfesores();
+}
+
+function cancelar(){
+  const urlParams = new URLSearchParams(window.location.search);
+  const token = urlParams.get('token');
+  window.location.href="alumno.html?token=" + encodeURIComponent(token);
+}
+function logout(){
+  window.location.href="index.html";
 }

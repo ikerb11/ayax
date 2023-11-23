@@ -11,47 +11,48 @@
     
     <form id="form" >
         <!-- DNI -->
-        <label for="dni">DNI:</label>
-        <input type="number" id="dni" name="dni" maxlength="10" >
+        <p><label for="dni">DNI:</label>
+        <input type="number" id="dni" name="dni" maxlength="10" ></p>
     
         <!-- Apellido 1 -->
-        <label for="apellido1">Apellido 1:</label>
-        <input type="text" id="apellido1" name="apellido1" maxlength="18">
+        <p><label for="apellido1">Apellido 1:</label>
+        <input type="text" id="apellido1" name="apellido1" maxlength="18"></p>
     
         <!-- Apellido 2 -->
-        <label for="apellido2">Apellido 2:</label>
-        <input type="text" id="apellido2" name="apellido2" maxlength="18">
+        <p><label for="apellido2">Apellido 2:</label>
+        <input type="text" id="apellido2" name="apellido2" maxlength="18"></p>
     
         <!-- Nombre -->
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" maxlength="18">
+        <p><label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" maxlength="18"></p>
     
         <!-- Dirección -->
-        <label for="direccion">Dirección:</label>
-        <input type="text" id="direccion" name="direccion" maxlength="30">
+        <p><label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" name="direccion" maxlength="30"></p>
     
         <!-- Localidad -->
-        <label for="localidad">Localidad:</label>
-        <input type="text" id="localidad" name="localidad" maxlength="19">
+        <p><label for="localidad">Localidad:</label>
+        <input type="text" id="localidad" name="localidad" maxlength="19"></p>
     
         <!-- Provincia -->
-        <label for="provincia">Provincia:</label>
-        <input type="text" id="provincia" name="provincia" maxlength="19">
+        <p><label for="provincia">Provincia:</label>
+        <input type="text" id="provincia" name="provincia" maxlength="19"></p>
     
         <!-- Fecha de Ingreso -->
-        <label for="fechaIngreso">Fecha de Ingreso:</label>
-        <input type="date" id="fechaIngreso" name="fechaIngreso">
+        <p><label for="fechaIngreso">Fecha de Ingreso:</label>
+        <input type="date" id="fechaIngreso" name="fechaIngreso"></p>
     
         <!-- ID Categoría -->
-        <label for="idCategoria">ID Categoría:</label>
-        <input type="text" id="idCategoria" name="idCategoria" maxlength="1" required>
+        <p><label for="idCategoria">ID Categoría:</label>
+        <input type="text" id="idCategoria" name="idCategoria" maxlength="1" required></p>
     
         <!-- ID Departamento -->
-        <label for="idDepartamento">ID Departamento:</label>
-        <input type="text" id="idDepartamento" name="idDepartamento" maxlength="3" required>
+        <p><label for="idDepartamento">ID Departamento:</label>
+        <input type="text" id="idDepartamento" name="idDepartamento" maxlength="3" required></p>
     
         <!-- Botón de Enviar -->
-        <input type="button" id="boton" value="Enviar">
+        <input type="button" id="boton" value="Enviar"/>
+        <input type="button" id="volver" value="Cancelar" onclick="cancelar()"/>
     </form>
     <h2 id="error"></h2>
 

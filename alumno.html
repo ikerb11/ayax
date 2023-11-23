@@ -7,19 +7,21 @@
 </head>
 <body onload="cargarTabla()">
     <h1>Listado Departamentos - Profesores</h1>
-    <input type="text" id="nombre" placeholder="nombre">
+    <p><input type="text" id="nombre" placeholder="nombre">
+    <input type="button" id="+" value="buscar" onclick="getProfesores()"></p>
     <button value="insertar" onclick="irFormularioEditar()">insertar</button> 
     <table id="tabla" border="1">
     </table>
     <nav id="Paginador">
         <label for="pagina">Pagina </label>
         <input type="number" id="pagina" name=pagina value="0">
-        <input type="submit" id="+" value="<<" onclick="minimo()">
-        <input type="submit" id="+" value="<" onclick="menos()">
-        <input type="submit" id="+" value="buscar" onclick="getProfesores()">
-        <input type="submit" id="+" value=">" onclick="mas()">
-        <input type="submit" id="+" value=">>" onclick="maximo()">
+        <input type="button" id="+" value="<<" onclick="minimo()">
+        <input type="button" id="+" value="<" onclick="menos()">
+        <input type="button" id="+" value="buscar" onclick="getProfesores()">
+        <input type="button" id="+" value=">" onclick="mas()">
+        <input type="button" id="+" value=">>" onclick="maximo()">
     </nav>
+    <p><input type="button" value="logout" onclick="logout()"></p>
     <h2 id="error"></h2>
     
 </body>
