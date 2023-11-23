@@ -297,16 +297,26 @@ function confirmarToken(){
   const urlParams = new URLSearchParams(window.location.search);
   const token = urlParams.get('token');
 
-  // Verificar la presencia del token
-  if (token) {
-      // Token válido, puedes realizar acciones adicionales aquí
-      console.log('Token válido:', token);
-  } else {
-      // Token no presente, redirigir a la página de inicio de sesión
-      alert('Acceso no autorizado. Debes iniciar sesión.');
-      window.location.href = 'index.html';
+  var url = "alumno_sw.php";
+  var data = { action:"sesion", hash:token };
+  
+  fetch(url, {
+    method: "POST", // or 'PUT'
+    body: JSON.stringify(data), // data can be `string` or {object}!
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .catch((error) => console.error("Error:", error))
+    .then(function(response){
+      var error=document.getElementById("error")
+      if(!response.succes){
+        window.location.href="index.html";
+      }
+    });
   }
-}
+
 
 function cargarTabla(){
   confirmarToken();

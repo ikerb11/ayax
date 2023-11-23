@@ -37,6 +37,28 @@ try{
             }catch(Exception $e){
                 throw $e;
             }
+    }elseif($action == "sesion"){
+        try{           
+            // Asignar valores a los parámetros y ejecutar la consulta
+            $hash= isset($data["hash"])? $data["hash"]:null;
+            $sql = "Select fecha_caducidad from registros where hash=:hash";
+            $arrValues[":hash"]= $hash;
+            $conexion = Conexion::getInstance();
+            $currentDate = date('Y-m-d H:i:s');
+            // Obtener los resultados
+            $return = $conexion->fetch($sql,$arrValues);
+            if ($currentDate>$return[0]["fecha_caducidad"]){
+                 throw new Exception("sesion Caducada");
+                 echo $return;
+            }
+            print_r($return) ;
+            print_r($return[0]["fecha_caducidad"]);
+            print_r($currentDate);
+            $data= $hash;
+            
+        }catch(Exception $e){
+            throw $e;
+        }
     }elseif($action == "insertar"){
         $insertar = isset($data["datos"])? $data["datos"]:null;
         if( $insertar!=NULL){
