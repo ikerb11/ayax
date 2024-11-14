@@ -51,9 +51,6 @@ try{
                  throw new Exception("sesion Caducada");
                  echo $return;
             }
-            print_r($return) ;
-            print_r($return[0]["fecha_caducidad"]);
-            print_r($currentDate);
             $data= $hash;
             
         }catch(Exception $e){

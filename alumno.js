@@ -86,9 +86,7 @@ function getProfesores(){
 }
 
   function maximo(){
-    var url = "alumno_sw.php";
-    var select= document.getElementById("departamentos");
-    var data = { action:"profesores" };
+    var pagina= document.getElementById("pagina");
     pagina.value = max;
     getProfesores();
   }
